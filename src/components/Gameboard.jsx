@@ -3,7 +3,6 @@ export default function Gameboard({
   updateCurrentList,
   shuffleList,
 }) {
-  console.log(cardList);
   return (
     <div className="gameboard">
       {cardList.map((card) => (
