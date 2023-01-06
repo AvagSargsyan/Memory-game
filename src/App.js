@@ -7,6 +7,10 @@ const reducer = (state, action) => {
     const newCurrentList = state.currentList.filter(
       (card) => card.id !== action.payload.cardId
     );
+    // Check if the game is over
+    if (newCurrentList.length === 0) {
+      alert('Congrats! You won the game!');
+    }
     return {
       ...state,
       currentList: newCurrentList,
@@ -18,6 +22,13 @@ const reducer = (state, action) => {
       currentList: state.cardList,
       score: 0,
     };
+  } else if (action.type === 'UPDATE_BEST_SCORE') {
+    if (state.score > state.bestScore) {
+      return {
+        ...state,
+        bestScore: state.score,
+      };
+    }
   }
   return state;
 };
@@ -76,6 +87,11 @@ function App() {
             cardId: cardId,
           },
         });
+
+        dispatch({
+          type: 'UPDATE_BEST_SCORE',
+        });
+
         containsCard = true;
       }
     });
