@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
 import Gameboard from './components/Gameboard';
 import Scores from './components/Scores';
+import { useEffect } from 'react';
 
 const shuffleList = (array) => {
   let currentIndex = array.length,
@@ -49,53 +50,55 @@ const reducer = (state, action) => {
         bestScore: state.score,
       };
     }
+  } else if (action.type === 'SET_LIST') {
+    return {
+      ...state,
+      cardList: action.payload.list,
+      currentList: action.payload.list,
+    };
   }
   return state;
 };
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {
-    cardList: [
-      {
-        id: 0,
-        imgUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
-      },
-      {
-        id: 1,
-        imgUrl: 'https://www.megaleechers.com/storage/AngularJS-Icon.png',
-      },
-      {
-        id: 2,
-        imgUrl: 'https://avatars.githubusercontent.com/u/6128107?s=280&v=4',
-      },
-      {
-        id: 3,
-        imgUrl: 'https://avatars.githubusercontent.com/u/23617963?s=280&v=4',
-      },
-    ],
-    currentList: [
-      {
-        id: 0,
-        imgUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
-      },
-      {
-        id: 1,
-        imgUrl: 'https://www.megaleechers.com/storage/AngularJS-Icon.png',
-      },
-      {
-        id: 2,
-        imgUrl: 'https://avatars.githubusercontent.com/u/6128107?s=280&v=4',
-      },
-      {
-        id: 3,
-        imgUrl: 'https://avatars.githubusercontent.com/u/23617963?s=280&v=4',
-      },
-    ],
+    cardList: [],
+    currentList: [],
     score: 0,
     bestScore: 0,
   });
+
+  // fetching data -------------------
+  const fetchPokemons = async (amount) => {
+    const pokemons = [];
+
+    for (let i = 1; i <= amount; i++) {
+      const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
+      const response = await fetch(pokemonUrl);
+      const pokemon = await response.json();
+      const id = pokemon.id;
+      const cardName = pokemon.name;
+      const imgUrl = pokemon.sprites.front_default;
+      pokemons.push({ id, cardName, imgUrl });
+    }
+
+    return pokemons;
+  };
+
+  useEffect(() => {
+    const loadCards = async () => {
+      dispatch({
+        type: 'SET_LIST',
+        payload: {
+          list: shuffleList(await fetchPokemons(12)),
+        },
+      });
+    };
+
+    loadCards();
+  }, []);
+
+  // ---------------------------------
 
   const updateCurrentList = (cardId) => {
     let containsCard = false;

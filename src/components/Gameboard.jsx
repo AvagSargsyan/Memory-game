@@ -3,6 +3,7 @@ export default function Gameboard({
   updateCurrentList,
   shuffleList,
 }) {
+  console.log(cardList);
   return (
     <div className="gameboard">
       {cardList.map((card) => (
@@ -16,6 +17,7 @@ export default function Gameboard({
             alt="card"
             style={{ width: '100px', height: '100px' }}
           />
+          <p className="card-name">{card.cardName}</p>
         </div>
       ))}
     </div>
