@@ -1,3 +1,5 @@
+import { capitalize } from "./capitalize";
+
 export const fetchPokemons = async (amount) => {
   const pokemons = [];
 
@@ -6,7 +8,7 @@ export const fetchPokemons = async (amount) => {
     const response = await fetch(pokemonUrl);
     const pokemon = await response.json();
     const id = pokemon.id;
-    const cardName = pokemon.name;
+    const cardName = capitalize(pokemon.name);
     const imgUrl = pokemon.sprites.front_default;
     pokemons.push({ id, cardName, imgUrl });
   }
