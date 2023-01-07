@@ -1,3 +1,5 @@
+import '../styles/Scores.scss';
+
 export default function Scores({ score, bestScore }) {
   return (
     <div className="scores">

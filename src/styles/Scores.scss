@@ -1,0 +1,17 @@
+@import './base';
+
+.scores {
+  align-self: center;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+
+  .current-score {
+    @include label($warn-color);
+  }
+
+  .best-score {
+    @include label($success-color);
+  }
+}

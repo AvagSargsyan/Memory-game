@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import './styles/App.scss'
 import Gameboard from './components/Gameboard';
 import Scores from './components/Scores';
 import { useEffect } from 'react';
@@ -59,12 +60,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Scores score={state.score} bestScore={state.bestScore} />
-      <Gameboard
-        cardList={state.cardList}
-        updateCurrentList={updateCurrentList}
-        shuffleList={shuffleList}
-      />
+      <main>
+        <Scores score={state.score} bestScore={state.bestScore} />
+        <Gameboard
+          cardList={state.cardList}
+          updateCurrentList={updateCurrentList}
+          shuffleList={shuffleList}
+        />
+      </main>
     </div>
   );
 }

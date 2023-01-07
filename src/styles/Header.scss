@@ -1,0 +1,15 @@
+@import './base';
+
+header {
+  background: $header-bg-color;
+  width: 100%;
+  text-align: center;
+  border-bottom: 8px solid $font-color;
+
+  .logo {
+    margin: 0.8rem;
+    width: 50%;
+    max-width: 30rem;
+    min-width: 15rem;
+  }
+}
