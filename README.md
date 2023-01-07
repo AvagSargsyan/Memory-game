@@ -1,3 +1,19 @@
+# Memory-game
+
+A memory game with pokemon characters. Get points for choosing a card, but don't choose the same card twice!
+
+![Memory game](./src/assets/screenshot.png)
+
+## Built with
+
+- ReactJS
+- SASS
+- [PokeAPI](https://pokeapi.co/)
+
+## Authors
+
+This project is created by [me](https://github.com/AvagSargsyan) during [The Odin Project](https://www.theodinproject.com/) Full stack developer curriculum.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
