@@ -4,6 +4,10 @@ A memory game with pokemon characters. Get points for choosing a card, but don't
 
 ![Memory game](./src/assets/screenshot.png)
 
+## Links
+
+You can play the game by following this [link](https://avagsargsyan.github.io/Memory-game).
+
 ## Built with
 
 - ReactJS
