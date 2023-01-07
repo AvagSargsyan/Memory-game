@@ -7,6 +7,7 @@ import { shuffleList } from './utilities/shuffleList';
 import { fetchPokemons } from './utilities/fetchPokemons';
 import { ACTIONS, reducer } from './reducers/appReducer';
 import Header from './components/Header';
+import Loading from './components/Loading';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {
@@ -14,6 +15,7 @@ function App() {
     currentList: [],
     score: 0,
     bestScore: 0,
+    loading: true
   });
 
   // fetching pokemon data
@@ -60,14 +62,16 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <main>
+      {state.loading ? (
+        <Loading />
+      ) : <main>
         <Scores score={state.score} bestScore={state.bestScore} />
         <Gameboard
           cardList={state.cardList}
           updateCurrentList={updateCurrentList}
           shuffleList={shuffleList}
         />
-      </main>
+      </main>}
     </div>
   );
 }

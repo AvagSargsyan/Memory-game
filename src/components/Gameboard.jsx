@@ -8,13 +8,16 @@ export default function Gameboard({
   return (
     <div className="gameboard">
       {cardList.map((card) => (
-        <div key={card.id} className="card">
+        <div
+          key={card.id}
+          onClick={() => {
+            updateCurrentList(card.id);
+            shuffleList(cardList);
+          }}
+          className="card"
+        >
           <img
             className="card-img"
-            onClick={() => {
-              updateCurrentList(card.id);
-              shuffleList(cardList);
-            }}
             src={card.imgUrl}
             alt="card"
             style={{ width: '100px', height: '100px' }}

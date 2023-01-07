@@ -38,6 +38,7 @@ export const reducer = (state, action) => {
       ...state,
       cardList: action.payload.list,
       currentList: action.payload.list,
+      loading: false
     };
   }
   return state;
