@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { shuffleList } from './utilities/shuffleList';
 import { fetchPokemons } from './utilities/fetchPokemons';
 import { ACTIONS, reducer } from './reducers/appReducer';
+import Header from './components/Header';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {
@@ -57,7 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Pokemon Cards</h1>
+      <Header />
       <Scores score={state.score} bestScore={state.bestScore} />
       <Gameboard
         cardList={state.cardList}
