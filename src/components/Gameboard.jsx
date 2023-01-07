@@ -1,3 +1,5 @@
+import '../styles/Gameboard.scss';
+
 export default function Gameboard({
   cardList,
   updateCurrentList,
@@ -6,8 +8,9 @@ export default function Gameboard({
   return (
     <div className="gameboard">
       {cardList.map((card) => (
-        <div key={card.id}>
+        <div key={card.id} className="card">
           <img
+            className="card-img"
             onClick={() => {
               updateCurrentList(card.id);
               shuffleList(cardList);
